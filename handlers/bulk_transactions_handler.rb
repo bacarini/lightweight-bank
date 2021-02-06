@@ -1,10 +1,10 @@
 class BulkTransactionsHandler
   def initialize(data)
-    @account = BankAccounts.find_by!(bic: data["organization_bic"])
+    @bank_account = BankAccounts.find_by!(bic: data["organization_bic"])
     @transactions = data["credit_transfers"]
-    @validate_service = ValidateTransactionsService.new(@account.balance_cents, @transactions)
-    @transfer_service = TransferService.new(@account)
-    # @debit_service = DebitService.new(@account)
+    @validate_service = ValidateTransactionsService.new(@bank_account.balance_cents, @transactions)
+    @transfer_service = TransferService.new(@bank_account)
+    @debit_service = DebitService.new(@bank_account)
   end
 
   def transfer
@@ -12,6 +12,6 @@ class BulkTransactionsHandler
 
     @transactions.each { |transaction| @transfer_service.transfer(transaction) }
 
-    # @debit_service.debit_credit()
+    @debit_service.debit_credit(@transactions)
   end
 end

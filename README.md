@@ -46,6 +46,5 @@ Database entities
 
 # Improvements
 
-- Implement the debit service
 - Increase test coverage
 - Validate edges cases
