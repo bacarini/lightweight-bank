@@ -1,6 +1,8 @@
 # lightweight-bank
 
-API to receive bulk transfer requests.
+Web server to process bulk transfer requests.
+
+[API documentation](docs/openapi.yml)
 
 # Requirement
 

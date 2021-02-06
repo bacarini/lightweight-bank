@@ -1,0 +1,69 @@
+openapi: '3.0.2'
+info:
+  title: Lightweight Bank API
+  version: '1.0'
+servers:
+  - url: https://http://127.0.0.1:9292/
+paths:
+  /transfer:
+    post:
+      parameters:
+        - $ref: '#/components/parameters/contentType'
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransactionRequest'
+
+      responses:
+        200:
+          description: Transactions created
+        404:
+          description: Account not found
+        422:
+          description: Insufficent Credits
+        500:
+          description: Internal Server Error
+
+components:
+  parameters:
+    contentType:
+      name: Content-Type
+      in: header
+      schema:
+        type: string
+        example: application/json
+  schemas:
+    CreateTransactionRequest:
+      type: object
+      required:
+        - organization_name
+        - organization_bic
+        - organization_iban
+        - credit_transfers
+      properties:
+        organization_name:
+          type: string
+        organization_bic:
+          type: string
+        organization_iban:
+          type: string
+        credit_transfers:
+          type: array
+          items:
+            type: object
+            properties:
+              amount:
+                type: string
+              currency:
+                type: string
+              counterparty_name:
+                type: string
+              counterparty_bic:
+                type: string
+              counterparty_iban:
+                type: string
+              description:
+                type: string
