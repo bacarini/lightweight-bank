@@ -10,7 +10,9 @@ gem "sqlite3"
 gem "sinatra-activerecord"
 
 group :test do
+  gem "database_cleaner-active_record"
   gem "rspec"
   gem "pry"
   gem "rack-test"
+  gem "factory_bot"
 end

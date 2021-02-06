@@ -46,5 +46,4 @@ Database entities
 
 - Implement the debit service
 - Increase test coverage
-- Improve the tests to run with different database
 - Validate edges cases

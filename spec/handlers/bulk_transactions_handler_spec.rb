@@ -1,10 +1,10 @@
 require_relative "../../handlers/bulk_transactions_handler"
 
-class BankAccounts
-
-end
-
 describe BulkTransactionsHandler do
+  before do
+    create(:bank_accounts)
+  end
+
   context "when transactions are allowed" do
     it "creates the respective transactions" do
       data = {

@@ -2,6 +2,9 @@ require 'json'
 
 describe 'POST /transfer' do
   include Rack::Test::Methods
+  before do
+    create(:bank_accounts)
+  end
 
   it "returns insufficient credits" do
     data = {
